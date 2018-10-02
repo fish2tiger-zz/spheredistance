@@ -1,5 +1,6 @@
 package com.intercom.hometest.provider;
 
+import com.google.gson.Gson;
 import com.intercom.hometest.model.CustomerRecord;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerRecordProvider {
-    protected static final Logger logger = LogManager.getLogger();
+    protected static final Logger logger = LogManager.getLogger(CustomerRecordProvider.class);
 
     public static List<CustomerRecord> loadData(String location){
         logger.info("logging information from location: "+ location);
@@ -30,8 +31,9 @@ public class CustomerRecordProvider {
 
             while ((line = bufferedReader.readLine()) != null)
             {
-                logger.info("reading data");
-                logger.info(line);
+                Gson gson = new Gson();
+                CustomerRecord record = gson.fromJson(line, CustomerRecord.class);
+                records.add(record);
                 content.append(line + "\n");
             }
             bufferedReader.close();
@@ -41,10 +43,9 @@ public class CustomerRecordProvider {
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
+        records.forEach(logger:: info);
         return records;
     }
 
-    public static void main(String[] args) {
-        CustomerRecordProvider.loadData("https://s3.amazonaws.com/intercom-take-home-test/customers.txt");
-    }
+
 }

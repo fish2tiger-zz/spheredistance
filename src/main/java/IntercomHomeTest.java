@@ -1,3 +1,9 @@
+import com.intercom.hometest.model.CustomerRecord;
+import com.intercom.hometest.model.Location;
+import com.intercom.hometest.provider.CustomerRecordProvider;
+import com.intercom.hometest.util.SphereDistanceUtil;
+
+import java.util.List;
 
 /**
  * THE TEST
@@ -23,6 +29,10 @@
 
 public class IntercomHomeTest {
     public static void main(String[] args) {
+        List<CustomerRecord> records = CustomerRecordProvider.loadData("https://s3.amazonaws.com/intercom-take-home-test/customers.txt");
 
+        Location intercomDublinOffice = new Location(53.339428, -6.257664);
+        records.stream().filter(rec -> SphereDistanceUtil.isWithinRange(100, rec.getLocation(), intercomDublinOffice))
+               .map();
     }
 }

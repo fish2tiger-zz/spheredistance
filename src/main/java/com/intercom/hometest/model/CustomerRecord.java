@@ -1,37 +1,44 @@
 package com.intercom.hometest.model;
 
-public class CustomerRecord {
-    private String customerName;
-    private double latitude;
-    private double longitude;
+public class CustomerRecord implements Comparable<String>{
+    private String user_id;
+    private String name;
+    private Location location;
 
-    public CustomerRecord(String customerName, double latitude, double longitude) {
-        this.customerName = customerName;
-        this.latitude = latitude;
-        this.longitude = longitude;
+    public CustomerRecord(String user_id, String customerName, double latitude, double longitude) {
+        this.user_id = user_id;
+        this.name = customerName;
+        this.location = new CustomerLocation( latitude, longitude);
     }
 
     public String getCustomerName() {
-        return customerName;
+        return name;
     }
 
     public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+        this.name = customerName;
     }
 
-    public double getLatitude() {
-        return latitude;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
+    public Location getLocation() {
+        return location;
     }
 
-    public double getLongitude() {
-        return longitude;
+    @Override
+    public int compareTo(String o) {
+        return 0;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+    @Override
+    public String toString() {
+        return "CustomerRecord{" +
+                "user_id='" + user_id + '\'' +
+                ", name='" + name + '\'' +
+                ", location=" + location +
+                '}';
     }
 }
+
