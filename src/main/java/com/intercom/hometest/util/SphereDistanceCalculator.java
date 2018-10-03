@@ -2,8 +2,12 @@ package com.intercom.hometest.util;
 
 import com.intercom.hometest.model.Location;
 
-public class SphereDistanceUtil {
-    private static final double AVG_RADIUS_OF_EARTH_KM = 6371;
+/**
+ * Sphere Distance Calculator calculates the great-distance of
+ * any two pair of coordinates of the geo-location on the earth.
+ */
+public class SphereDistanceCalculator {
+    public static final double AVG_RADIUS_OF_EARTH_KM = 6371;
 
     /**
      * Calculate the shortest distance between two points on the surface of
@@ -15,7 +19,7 @@ public class SphereDistanceUtil {
      * @param y2 longitude for point2
      * @return sphere distance in kilometer
      */
-    public static double getGreatCircleDis(double x1, double y1, double x2, double y2){
+    public static double getGreatCircleDis(double x1, double y1, double x2, double y2) {
         // convert degrees to radians
         double x1Radian = Math.toRadians(x1);
         double y1Radian = Math.toRadians(y1);
@@ -25,17 +29,16 @@ public class SphereDistanceUtil {
         double angle1 = Math.acos(Math.sin(x1Radian) * Math.sin(x2Radian)
                 + Math.cos(x1Radian) * Math.cos(x2Radian) * Math.cos(Math.abs(y1Radian - y2Radian)));
 
-        return angle1*AVG_RADIUS_OF_EARTH_KM;
+        return angle1 * AVG_RADIUS_OF_EARTH_KM;
     }
 
     /**
-     *
-     * @param range max distance between center and subject
-     * @param center the center object with latitude/longitude info
+     * @param range   max distance between center and subject
+     * @param center  the center object with latitude/longitude info
      * @param subject the subject object with latitude/longitude info
      * @return true if within the range, otherwise false
      */
-    public static final boolean isWithinRange(double range, Location center, Location subject){
+    public static final boolean isWithinRange(double range, Location center, Location subject) {
         return getGreatCircleDis(center.getLatitude(), center.getLongitude(), subject.getLatitude(), subject.getLongitude()) <= range;
     }
 

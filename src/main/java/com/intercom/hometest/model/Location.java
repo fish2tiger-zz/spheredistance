@@ -1,11 +1,14 @@
 package com.intercom.hometest.model;
 
+/**
+ * The Location class represents the geo-coordinates of
+ * any subjects on earth.
+ */
 public class Location {
-    protected double latitude;
-    protected double longitude;
+    private double latitude;
+    private double longitude;
 
-    public Location(){
-
+    public Location() {
     }
 
     public Location(double latitude, double longitude) {
@@ -19,5 +22,13 @@ public class Location {
 
     public double getLatitude() {
         return latitude;
+    }
+
+    @Override
+    public String toString() {
+        return "Location { " +
+                " latitude= " + latitude +
+                ", longitude=" + longitude +
+                '}';
     }
 }
