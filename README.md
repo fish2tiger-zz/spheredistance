@@ -1,7 +1,7 @@
 # Great-distance calculator homework
 
 ## Getting Started
-The project is built in using maven structure. The maven wrapper is prepared to ease the 
+The project is built using maven structure. The maven wrapper is prepared to ease the 
 development environment setup.
 
 To build the project, simple type: 
@@ -18,7 +18,7 @@ $ ./mvnw.cmd clean install
 
 To Run, simple type :
 ```
-$ java -jar target/hometest-1.0-SNAPSHOT-jar-with-dependencies.jar
+$ java -jar target/hometest-1.0-SNAPSHOT-jar-with-dependencies.jar [filepath/url]
 ```
 
 The expected customer records will be printed in the console like: 
